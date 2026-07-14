@@ -5,15 +5,15 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./src/index.ts",
       "default": "./dist/index.js"
     },
     "./schema": {
-      "types": "./dist/schema/index.d.ts",
+      "types": "./src/schema/index.ts",
       "default": "./dist/schema/index.js"
     },
     "./query": {
-      "types": "./dist/query.d.ts",
+      "types": "./src/query.ts",
       "default": "./dist/query.js"
     }
   },

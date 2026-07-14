@@ -1,10 +1,10 @@
-import type { CreateLocationInput, Location } from "./location.js";
+import type { CreateLocationInput, Location } from "./location";
 import {
   InactiveParentLocationError,
   LocationCodeAlreadyExistsError,
   ParentLocationNotFoundError,
-} from "./location.errors.js";
-import type { LocationRepository } from "./location.repository.js";
+} from "./location.errors";
+import type { LocationRepository } from "./location.repository";
 
 export class CreateLocation {
   constructor(private readonly locations: LocationRepository) {}
