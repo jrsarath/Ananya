@@ -5,7 +5,7 @@
 If you discover a security vulnerability within Ananya, please follow these steps:
 
 1. **Do not create a public GitHub issue** for security vulnerabilities
-2. Send an email to [INSERT EMAIL ADDRESS] with the subject "SECURITY: [Brief Description]"
+2. Send an email to [oss@48studios.in](mailto:oss@48studios.in) with the subject "SECURITY: [Brief Description]"
 3. Include as much information as possible about the vulnerability:
    - Type of vulnerability
    - Steps to reproduce
