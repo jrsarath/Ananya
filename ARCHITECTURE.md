@@ -20,13 +20,13 @@ The system is developed as a modular monorepo.
 ## Repository Structure
 
 apps/
-  api/       NestJS API
-  web/       Next.js web application
+api/ NestJS API
+web/ Next.js web application
 
 packages/
-  database/  Database schema and persistence infrastructure
-  inventory/ Inventory domain logic
-  shared/    Shared contracts and utilities
+database/ Database schema and persistence infrastructure
+inventory/ Inventory domain logic
+shared/ Shared contracts and utilities
 
 ## Architectural Direction
 
@@ -40,19 +40,19 @@ Modules should maintain explicit domain boundaries.
 ## Dependency Direction
 
 Web
- ↓
+↓
 API
 
 API
- ↓
+↓
 Domain Modules
 
 Domain Modules
- ↓
+↓
 Database abstractions
 
 Database
- ↓
+↓
 PostgreSQL
 
 The web application must not access PostgreSQL directly.

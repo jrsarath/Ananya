@@ -1,7 +1,4 @@
-import type {
-  CreateLocationInput,
-  Location,
-} from "./location.js";
+import type { CreateLocationInput, Location } from "./location.js";
 import {
   InactiveParentLocationError,
   LocationCodeAlreadyExistsError,
@@ -10,9 +7,7 @@ import {
 import type { LocationRepository } from "./location.repository.js";
 
 export class CreateLocation {
-  constructor(
-    private readonly locations: LocationRepository,
-  ) {}
+  constructor(private readonly locations: LocationRepository) {}
 
   async execute(input: CreateLocationInput): Promise<Location> {
     const code = input.code.trim().toUpperCase();

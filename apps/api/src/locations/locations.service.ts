@@ -4,6 +4,7 @@ import {
   type CreateLocationInput,
   type Location,
   type LocationRepository,
+  LocationNotFoundError,
 } from '@ananya/inventory';
 import { LOCATION_REPOSITORY } from './location.tokens';
 
@@ -13,12 +14,24 @@ export class LocationsService {
 
   constructor(
     @Inject(LOCATION_REPOSITORY)
-    repository: LocationRepository,
+    private readonly repository: LocationRepository,
   ) {
     this.createLocation = new CreateLocation(repository);
   }
 
   create(input: CreateLocationInput): Promise<Location> {
     return this.createLocation.execute(input);
+  }
+
+  getAllLocations(): Promise<Location[]> {
+    return this.repository.findAll();
+  }
+
+  async getLocation(id: string): Promise<Location> {
+    const location = await this.repository.findById(id);
+    if (!location) {
+      throw new LocationNotFoundError(id);
+    }
+    return location;
   }
 }

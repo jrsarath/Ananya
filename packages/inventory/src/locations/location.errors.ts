@@ -18,3 +18,10 @@ export class InactiveParentLocationError extends Error {
     this.name = "InactiveParentLocationError";
   }
 }
+
+export class LocationNotFoundError extends Error {
+  constructor(id: string) {
+    super(`Location not found: ${id}`);
+    this.name = "LocationNotFoundError";
+  }
+}

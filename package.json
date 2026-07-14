@@ -1,5 +1,6 @@
 {
   "name": "ananya",
+  "description": "Internal operations system for 48 Studios.",
   "private": true,
   "scripts": {
     "build": "turbo run build",

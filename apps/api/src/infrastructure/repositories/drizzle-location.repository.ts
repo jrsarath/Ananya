@@ -42,6 +42,12 @@ export class DrizzleLocationRepository implements LocationRepository {
     return row ? toDomain(row) : null;
   }
 
+  async findAll(): Promise<Location[]> {
+    const rows = await db.select().from(locations).orderBy(locations.code);
+
+    return rows.map(toDomain);
+  }
+
   async create(input: CreateLocationInput): Promise<Location> {
     const [row] = await db
       .insert(locations)

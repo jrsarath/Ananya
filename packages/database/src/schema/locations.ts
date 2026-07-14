@@ -21,12 +21,9 @@ export const locations = pgTable(
 
     kind: varchar("kind", { length: 50 }).notNull(),
 
-    parentId: uuid("parent_id").references(
-      (): AnyPgColumn => locations.id,
-      {
-        onDelete: "restrict",
-      },
-    ),
+    parentId: uuid("parent_id").references((): AnyPgColumn => locations.id, {
+      onDelete: "restrict",
+    }),
 
     isActive: boolean("is_active").notNull().default(true),
 
