@@ -58,6 +58,19 @@ Prefer explicit typing over inference where it improves readability. Use interfa
 3. Use `pnpm dev` to start development servers
 4. Follow the existing code structure and patterns when adding new features
 
+## Repository Conventions
+
+- Never generate `.js` imports in TypeScript source files.
+- Always use extensionless imports.
+- Follow the shared TypeScript configuration.
+- Every NestJS DTO must use `class-validator`.
+- Keep controllers thin.
+- Keep business logic in domain use cases.
+- Keep repositories persistence-only.
+- Never introduce framework dependencies into domain packages.
+- Always update public exports (`index.ts`) when adding a new module.
+- Always ensure `pnpm check-types`, `pnpm lint`, and `pnpm build` pass before considering work complete.
+
 ## Testing
 
 All domain logic must be unit tested. Integration tests should cover repository implementations and API endpoints.

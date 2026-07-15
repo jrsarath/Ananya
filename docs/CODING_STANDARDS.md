@@ -43,6 +43,15 @@ This document outlines the coding standards and best practices for the Ananya pr
 - Avoid circular dependencies
 - Use relative paths for internal imports
 - Import only what's needed from external libraries
+- Never generate `.js` imports inside TypeScript source files
+- Always use extensionless imports
+
+## DTO Validation
+
+- DTOs must always use class-validator decorators
+- Controllers should only receive validated DTOs
+- DTO validation is only for request shape and basic constraints
+- Do not duplicate business validation already performed by the domain
 
 ## Documentation
 

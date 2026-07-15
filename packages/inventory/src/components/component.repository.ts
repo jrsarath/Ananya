@@ -1,4 +1,4 @@
-import type { Component, CreateComponentInput } from "./component.js";
+import type { Component, CreateComponentInput } from './component';
 
 export interface ComponentRepository {
   findById(id: string): Promise<Component | null>;

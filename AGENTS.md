@@ -171,3 +171,20 @@ Reuse:
 Avoid introducing new abstractions unless the existing architecture is insufficient.
 
 Keep edits focused and minimal.
+
+---
+
+# Engineering Standards
+
+## TypeScript Imports
+
+- Never generate `.js` imports inside TypeScript source files.
+- Always use extensionless imports.
+- Follow the repository TypeScript configuration.
+
+## DTO Validation
+
+- DTOs must always use class-validator decorators.
+- Controllers should only receive validated DTOs.
+- DTO validation is only for request shape and basic constraints.
+- Do not duplicate business validation already performed by the domain.

@@ -14,7 +14,7 @@ Display overall progress as checklists grouped by major milestones.
 - [x] Inventory Package
 - [x] Locations Module
 - [x] Components Module
-- [ ] Manufacturers
+- [x] Manufacturers
 - [ ] Suppliers
 - [ ] Stock
 - [ ] BOM

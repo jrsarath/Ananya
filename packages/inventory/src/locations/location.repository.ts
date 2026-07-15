@@ -1,4 +1,4 @@
-import type { CreateLocationInput, Location } from "./location.js";
+import type { CreateLocationInput, Location } from './location';
 
 export interface LocationRepository {
   findById(id: string): Promise<Location | null>;
