@@ -8,6 +8,13 @@
       "when": 1783788750607,
       "tag": "0000_yielding_khan",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1784100923496,
+      "tag": "0001_smiling_fenris",
+      "breakpoints": true
     }
   ]
 }

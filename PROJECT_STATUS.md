@@ -13,7 +13,7 @@ Display overall progress as checklists grouped by major milestones.
 - [x] Core Package
 - [x] Inventory Package
 - [x] Locations Module
-- [ ] Components Module
+- [x] Components Module
 - [ ] Manufacturers
 - [ ] Suppliers
 - [ ] Stock

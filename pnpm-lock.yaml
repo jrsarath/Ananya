@@ -223,6 +223,13 @@ importers:
         version: 8.50.0(eslint@9.39.1)(typescript@5.9.2)
 
   packages/inventory:
+    dependencies:
+      '@ananya/core':
+        specifier: workspace:^
+        version: link:../core
+      '@ananya/database':
+        specifier: workspace:^
+        version: link:../database
     devDependencies:
       '@ananya/typescript-config':
         specifier: workspace:*
