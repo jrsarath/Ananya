@@ -173,3 +173,4 @@ Routine feature work, bug fixes, refactoring, implementation details, and small 
 | RFC | Title | Status |
 |------|-------|--------|
 | 0001 | Inventory Ledger | Accepted |
+| 0002 | Inventory Domain Model | Draft |
