@@ -2,6 +2,7 @@
   "extends": "@ananya/typescript-config/library.json",
   "compilerOptions": {
     "outDir": "dist",
+    "rootDir": "."
   },
   "include": ["src"]
 }

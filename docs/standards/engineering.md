@@ -55,4 +55,12 @@ All domain logic must be unit tested. Integration tests should cover repository 
 
 ## Documentation
 
-Each package should include a README.md explaining its purpose, usage, and public APIs.
+Documentation is treated as part of the codebase.
+
+Documentation should:
+
+- Describe the current implementation.
+- Avoid duplicating information.
+- Avoid documenting planned features.
+- Link to related documents instead of repeating content.
+- Be updated alongside code changes.

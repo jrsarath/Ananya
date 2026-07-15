@@ -1,43 +1,141 @@
 # Contributing to Ananya
 
-Thank you for your interest in contributing to Ananya! This document outlines the contribution process and guidelines.
+Thank you for your interest in contributing to Ananya.
 
-## How to Contribute
+This document describes the contribution workflow used by the project.
 
-### Reporting Issues
-- Use the issue tracker to report bugs or request features
-- Provide detailed steps to reproduce issues
-- Include relevant information about your environment
-- Search existing issues before creating a new one
+Before contributing, please familiarize yourself with the project documentation in the `docs/` directory.
 
-### Submitting Changes
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/your-feature-name`)
-3. Make your changes
-4. Write tests for your changes
-5. Run the test suite
-6. Commit your changes with clear messages
-7. Push to your fork
-8. Submit a pull request
+---
 
-## Code Style
-- Follow the existing code style in the project
-- Use TypeScript for all new code
-- Maintain consistency with existing patterns
-- Write clear, concise comments
+# Development Workflow
 
-## Testing
-- All code changes must be accompanied by tests
-- Tests should cover both positive and negative cases
-- Ensure all existing tests continue to pass
+Every contribution should follow the same workflow.
 
-## Pull Request Guidelines
-- Keep PRs focused on a single purpose
-- Include a clear description of the change
-- Reference related issues
-- Ensure all checks pass before merging
+```
+Implement
+        ↓
+check-types
+        ↓
+lint
+        ↓
+build
+        ↓
+PR Review Checklist
+        ↓
+Open Pull Request
+```
 
-## Community Guidelines
-- Be respectful and inclusive
-- Follow the Code of Conduct
-- Help others in the community
+The repository should remain in a buildable state after every change.
+
+---
+
+# Before You Begin
+
+Please review the following documents before making significant changes:
+
+- `docs/architecture/ARCHITECTURE.md`
+- `docs/architecture/PROJECT_STRUCTURE.md`
+- `docs/standards/ENGINEERING.md`
+- `docs/standards/CODING_STANDARDS.md`
+- `docs/standards/PR_REVIEW_CHECKLIST.md`
+
+---
+
+# Setting Up
+
+Follow the setup instructions in:
+
+- `docs/development/SETUP.md`
+
+For day-to-day development, see:
+
+- `docs/development/LOCAL_DEVELOPMENT.md`
+
+---
+
+# Quality Gates
+
+Every contribution should successfully complete:
+
+```bash
+pnpm check-types
+pnpm lint
+pnpm build
+```
+
+Pull requests should not be opened unless these commands pass successfully.
+
+---
+
+# Pull Requests
+
+Keep pull requests focused on a single logical change.
+
+A pull request should:
+
+- Have a clear title and description.
+- Explain the motivation for the change.
+- Reference related issues or RFCs where applicable.
+- Pass all required quality gates.
+- Follow the PR Review Checklist.
+
+---
+
+# Coding Standards
+
+Follow the project's documented standards.
+
+See:
+
+- `docs/standards/ENGINEERING.md`
+- `docs/standards/CODING_STANDARDS.md`
+
+When introducing a new domain module or package, also review:
+
+- `docs/standards/NEW_MODULE.md`
+- `docs/standards/NEW_PACKAGE.md`
+
+---
+
+# Architectural Changes
+
+Significant architectural or domain changes should be discussed before implementation.
+
+If a change affects:
+
+- architecture,
+- domain modelling,
+- persistence,
+- public APIs,
+- or long-term engineering direction,
+
+create or update an RFC in:
+
+```
+docs/rfcs/
+```
+
+before implementation begins.
+
+---
+
+# Reporting Issues
+
+When reporting a bug, include:
+
+- a clear description of the problem,
+- steps to reproduce,
+- expected behaviour,
+- actual behaviour,
+- relevant logs or screenshots where appropriate.
+
+Please search existing issues before opening a new one.
+
+---
+
+# Community
+
+Please be respectful, constructive, and collaborative.
+
+All contributors are expected to follow the project's Code of Conduct.

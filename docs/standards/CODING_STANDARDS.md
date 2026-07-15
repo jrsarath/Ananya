@@ -79,3 +79,11 @@ This document outlines the coding standards and best practices for the Ananya pr
 - Use descriptive test names
 - Keep tests focused and fast
 - Separate setup, execution, and assertion phases clearly
+
+## General Principles
+
+- Prefer readability over cleverness.
+- Keep files focused on a single responsibility.
+- Remove dead code instead of commenting it out.
+- Keep public APIs intentional and minimal.
+- Favor composition over duplication.
