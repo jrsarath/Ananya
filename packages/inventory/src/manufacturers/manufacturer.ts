@@ -32,6 +32,10 @@ export class Manufacturer {
     this.updatedAt = props.updatedAt;
   }
 
+  /**
+   * Creates a new Manufacturer aggregate.
+   * Owns identity generation, timestamps, defaults, normalization, and invariants.
+   */
   public static create(input: CreateManufacturerInput): Manufacturer {
     // Normalize code: trim and lowercase
     const code = input.code.trim().toLowerCase();
@@ -62,5 +66,14 @@ export class Manufacturer {
       createdAt,
       updatedAt
     });
+  }
+
+  /**
+   * Rehydrates an existing Manufacturer from persistence.
+   * Reconstructs state exactly as stored without validation or normalization.
+   * Used only by repositories when loading from the database.
+   */
+  public static rehydrate(props: ManufacturerProps): Manufacturer {
+    return new Manufacturer(props);
   }
 }

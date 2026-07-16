@@ -1,32 +1,28 @@
 import { db } from '@ananya/database';
 import { manufacturers } from '@ananya/database/schema';
-import type {
-  CreateManufacturerInput,
-  Manufacturer,
-  ManufacturerRepository,
-} from '@ananya/inventory';
+import type { Manufacturer, ManufacturerRepository } from '@ananya/inventory';
 import { eq } from '@ananya/database/query';
-
-type ManufacturerRow = typeof manufacturers.$inferSelect;
+import type { Manufacturer as ManufacturerRow } from '@ananya/database/schema';
+import { Manufacturer as ManufacturerAggregate } from '@ananya/inventory';
 
 function toDomain(row: ManufacturerRow): Manufacturer {
-  return {
+  return ManufacturerAggregate.rehydrate({
     id: row.id,
     code: row.code,
     name: row.name,
     isActive: row.isActive,
     createdAt: row.createdAt,
     updatedAt: row.updatedAt,
-  };
+  });
 }
 
 function toRow(
-  manufacturer: CreateManufacturerInput,
+  manufacturer: Manufacturer,
 ): Omit<ManufacturerRow, 'id' | 'createdAt' | 'updatedAt'> {
   return {
     code: manufacturer.code,
     name: manufacturer.name,
-    isActive: true,
+    isActive: manufacturer.isActive,
   };
 }
 
@@ -60,10 +56,10 @@ export class DrizzleManufacturerRepository implements ManufacturerRepository {
     return rows.map(toDomain);
   }
 
-  async save(input: CreateManufacturerInput): Promise<Manufacturer> {
+  async save(manufacturer: Manufacturer): Promise<Manufacturer> {
     const [row] = await db
       .insert(manufacturers)
-      .values(toRow(input))
+      .values(toRow(manufacturer))
       .returning();
 
     if (!row) {
