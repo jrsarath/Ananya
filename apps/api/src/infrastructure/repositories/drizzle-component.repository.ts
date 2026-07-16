@@ -1,9 +1,6 @@
 import { db } from '@ananya/database';
 import { components } from '@ananya/database/schema';
-import type {
-  Component,
-  ComponentRepository,
-} from '@ananya/inventory';
+import type { Component, ComponentRepository } from '@ananya/inventory';
 import { eq } from '@ananya/database/query';
 import type { Component as ComponentRow } from '@ananya/database/schema';
 import { Component as ComponentAggregate } from '@ananya/inventory';
@@ -24,7 +21,9 @@ function toDomain(row: ComponentRow): Component {
   });
 }
 
-function toRow(component: Component): Omit<ComponentRow, 'id' | 'createdAt' | 'updatedAt'> {
+function toRow(
+  component: Component,
+): Omit<ComponentRow, 'id' | 'createdAt' | 'updatedAt'> {
   return {
     sku: component.sku,
     name: component.name,
@@ -65,7 +64,10 @@ export class DrizzleComponentRepository implements ComponentRepository {
   }
 
   async save(component: Component): Promise<Component> {
-    const [row] = await db.insert(components).values(toRow(component)).returning();
+    const [row] = await db
+      .insert(components)
+      .values(toRow(component))
+      .returning();
 
     if (!row) {
       throw new Error('Failed to create component');

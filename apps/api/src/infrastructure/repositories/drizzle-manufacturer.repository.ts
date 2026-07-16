@@ -1,9 +1,6 @@
 import { db } from '@ananya/database';
 import { manufacturers } from '@ananya/database/schema';
-import type {
-  Manufacturer,
-  ManufacturerRepository,
-} from '@ananya/inventory';
+import type { Manufacturer, ManufacturerRepository } from '@ananya/inventory';
 import { eq } from '@ananya/database/query';
 import type { Manufacturer as ManufacturerRow } from '@ananya/database/schema';
 import { Manufacturer as ManufacturerAggregate } from '@ananya/inventory';
@@ -19,7 +16,9 @@ function toDomain(row: ManufacturerRow): Manufacturer {
   });
 }
 
-function toRow(manufacturer: Manufacturer): Omit<ManufacturerRow, 'id' | 'createdAt' | 'updatedAt'> {
+function toRow(
+  manufacturer: Manufacturer,
+): Omit<ManufacturerRow, 'id' | 'createdAt' | 'updatedAt'> {
   return {
     code: manufacturer.code,
     name: manufacturer.name,
