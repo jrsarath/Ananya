@@ -100,9 +100,9 @@ export class InventoryTransaction {
         assertNever(input.transactionType);
     }
 
-    // Create and return the transaction
-    const id = input.id || ObjectId.generate().value;
-    const createdAt = input.createdAt || new Date();
+    // Generate identity and timestamps - factory owns these
+    const id = ObjectId.generate().value;
+    const createdAt = new Date();
     
     return new InventoryTransaction({
       id,

@@ -8,8 +8,8 @@ export class CreateManufacturer {
   ) {}
 
   async execute(input: CreateManufacturerInput): Promise<Manufacturer> {
+    // Normalize input for uniqueness check (the aggregate will normalize again)
     const code = input.code.trim().toLowerCase();
-    const name = input.name.trim();
 
     const existing = await this.manufacturers.findByCode(code);
 
@@ -18,6 +18,9 @@ export class CreateManufacturer {
     }
 
     // Create the manufacturer using factory method
-    return this.manufacturers.save(Manufacturer.create(input));
+    const manufacturer = Manufacturer.create(input);
+
+    // Persist the aggregate
+    return this.manufacturers.save(manufacturer);
   }
 }

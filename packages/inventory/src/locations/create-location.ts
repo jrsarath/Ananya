@@ -10,9 +10,8 @@ export class CreateLocation {
   constructor(private readonly locations: LocationRepository) {}
 
   async execute(input: CreateLocationInput): Promise<Location> {
+    // Normalize input for uniqueness check (the aggregate will normalize again)
     const code = input.code.trim().toUpperCase();
-    const name = input.name.trim();
-    const kind = input.kind.trim().toLowerCase();
 
     const existing = await this.locations.findByCode(code);
 
@@ -33,6 +32,9 @@ export class CreateLocation {
     }
 
     // Create the location using factory method
-    return this.locations.save(Location.create(input));
+    const location = Location.create(input);
+
+    // Persist the aggregate
+    return this.locations.save(location);
   }
 }

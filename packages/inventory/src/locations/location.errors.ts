@@ -23,3 +23,21 @@ export class LocationNotFoundError extends DomainError {
     super(`Location not found: ${id}`);
   }
 }
+
+export class InvalidLocationCodeError extends DomainError {
+  constructor(message: string) {
+    super(message);
+  }
+}
+
+export class InvalidLocationNameError extends DomainError {
+  constructor(message: string) {
+    super(message);
+  }
+}
+
+export class InvalidLocationKindError extends DomainError {
+  constructor(message: string) {
+    super(message);
+  }
+}

@@ -1,4 +1,7 @@
-export interface Location {
+import { ObjectId } from '@ananya/core';
+import { InvalidLocationCodeError, InvalidLocationNameError, InvalidLocationKindError } from './location.errors';
+
+export interface LocationProps {
   id: string;
   code: string;
   name: string;
@@ -6,6 +9,8 @@ export interface Location {
   parentId: string | null;
   isActive: boolean;
   metadata: Record<string, unknown>;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface CreateLocationInput {
@@ -14,4 +19,71 @@ export interface CreateLocationInput {
   kind: string;
   parentId?: string | null;
   metadata?: Record<string, unknown>;
+}
+
+export class Location {
+  public readonly id: string;
+  public readonly code: string;
+  public readonly name: string;
+  public readonly kind: string;
+  public readonly parentId: string | null;
+  public readonly isActive: boolean;
+  public readonly metadata: Record<string, unknown>;
+  public readonly createdAt: Date;
+  public readonly updatedAt: Date;
+
+  private constructor(props: LocationProps) {
+    this.id = props.id;
+    this.code = props.code;
+    this.name = props.name;
+    this.kind = props.kind;
+    this.parentId = props.parentId;
+    this.isActive = props.isActive;
+    this.metadata = props.metadata;
+    this.createdAt = props.createdAt;
+    this.updatedAt = props.updatedAt;
+  }
+
+  public static create(input: CreateLocationInput): Location {
+    // Normalize code: trim and uppercase
+    const code = input.code.trim().toUpperCase();
+    
+    // Normalize name: trim
+    const name = input.name.trim();
+    
+    // Normalize kind: trim and lowercase
+    const kind = input.kind.trim().toLowerCase();
+
+    // Validate code
+    if (!code) {
+      throw new InvalidLocationCodeError('Location code is required');
+    }
+
+    // Validate name
+    if (!name) {
+      throw new InvalidLocationNameError('Location name is required');
+    }
+
+    // Validate kind
+    if (!kind) {
+      throw new InvalidLocationKindError('Location kind is required');
+    }
+
+    // Generate identity and timestamps
+    const id = ObjectId.generate().value;
+    const createdAt = new Date();
+    const updatedAt = createdAt;
+
+    return new Location({
+      id,
+      code,
+      name,
+      kind,
+      parentId: input.parentId ?? null,
+      isActive: true, // Default to active
+      metadata: input.metadata ?? {},
+      createdAt,
+      updatedAt
+    });
+  }
 }

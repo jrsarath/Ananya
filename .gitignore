@@ -1,42 +1,62 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
+```
 # Dependencies
-node_modules
-.pnp
-.pnp.js
+node_modules/
+package-lock.json
 
-# Local env files
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+.ENV
+.ENV.*
+.venv.bak/
+.python-version
+
+# Logs
+*.log
+
+# Environment specific
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*
+.env.local.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build outputs
+dist/
+build/
+target/
+*.out
+*.exe
+*.dll
+*.so
+*.a
+*.o
+*.obj
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
 
 # Testing
-coverage
+.mypy_cache/
+.pytest_cache/
+.nyc_output/
+coverage/
 
-# Turbo
-.turbo
-
-# Vercel
-.vercel
-
-# Build Outputs
-.next/
-out/
-build
-dist
-
-
-# Debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Misc
+# OS generated
 .DS_Store
-*.pem
-
-# Environment
-.env
-.env.local
+Thumbs.db
+```

@@ -1,4 +1,5 @@
 import { ObjectId } from '@ananya/core';
+import { InvalidComponentSkuError, InvalidComponentNameError, InvalidUnitError } from './component.errors';
 
 export interface ComponentProps {
   id: string;
@@ -54,55 +55,46 @@ export class Component {
   }
 
   public static create(input: CreateComponentInput): Component {
+    // Normalize SKU: trim and lowercase
     const sku = input.sku.trim().toLowerCase();
+    
+    // Normalize name: trim
     const name = input.name.trim();
+    
+    // Normalize unit: trim
     const unit = input.unit.trim();
 
     // Validate required fields
     if (!sku) {
-      throw new Error('SKU is required');
+      throw new InvalidComponentSkuError('SKU is required');
     }
     
     if (!name) {
-      throw new Error('Name is required');
+      throw new InvalidComponentNameError('Name is required');
     }
     
     if (!unit) {
-      throw new Error('Unit is required');
+      throw new InvalidUnitError('Unit is required');
     }
 
+    // Generate identity and timestamps
     const id = ObjectId.generate().value;
     const createdAt = new Date();
-    const updatedAt = new Date();
+    const updatedAt = createdAt;
 
     return new Component({
       id,
       sku,
       name,
-      description: input.description?.trim() || undefined,
+      description: input.description?.trim() ?? null,
       manufacturerId: input.manufacturerId ?? null,
       categoryId: input.categoryId ?? null,
       defaultLocationId: input.defaultLocationId ?? null,
       unit,
-      isActive: true,
+      isActive: true, // Default to active
       createdAt,
       updatedAt
     });
-  }
-
-  public update(input: Partial<CreateComponentInput>): Component {
-    const updatedProps: ComponentProps = {
-      ...this,
-      name: input.name || this.name,
-      description: input.description?.trim() || this.description,
-      manufacturerId: input.manufacturerId ?? this.manufacturerId,
-      categoryId: input.categoryId ?? this.categoryId,
-      defaultLocationId: input.defaultLocationId ?? this.defaultLocationId,
-      unit: input.unit || this.unit,
-      updatedAt: new Date()
-    };
-
-    return new Component(updatedProps);
   }
 }
 

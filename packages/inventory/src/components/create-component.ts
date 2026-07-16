@@ -8,9 +8,8 @@ export class CreateComponent {
   ) {}
 
   async execute(input: CreateComponentInput): Promise<Component> {
+    // Normalize input for uniqueness check (the aggregate will normalize again)
     const sku = input.sku.trim().toLowerCase();
-    const name = input.name.trim();
-    const unit = input.unit.trim();
 
     const existing = await this.components.findBySku(sku);
 
@@ -19,6 +18,9 @@ export class CreateComponent {
     }
 
     // Create the component using factory method
-    return this.components.save(Component.create(input));
+    const component = Component.create(input);
+
+    // Persist the aggregate
+    return this.components.save(component);
   }
 }
