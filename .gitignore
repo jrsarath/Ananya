@@ -59,4 +59,7 @@ coverage/
 # OS generated
 .DS_Store
 Thumbs.db
+
+#others
+.turbo
 ```
