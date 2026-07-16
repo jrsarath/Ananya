@@ -18,6 +18,8 @@ function toDomain(row: LocationRow): Location {
     parentId: row.parentId,
     isActive: row.isActive,
     metadata: row.metadata,
+    createdAt: row.createdAt,
+    updatedAt: row.updatedAt,
   };
 }
 
