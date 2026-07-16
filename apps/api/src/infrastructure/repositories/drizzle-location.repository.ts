@@ -19,16 +19,6 @@ function toDomain(row: LocationRow): Location {
     metadata: row.metadata,
     createdAt: row.createdAt,
     updatedAt: row.updatedAt,
-  });
-}
-
-function toRow(location: Location): Omit<LocationRow, 'id' | 'createdAt' | 'updatedAt'> {
-  return {
-    code: location.code,
-    name: location.name,
-    kind: location.kind,
-    parentId: location.parentId ?? null,
-    metadata: location.metadata ?? {},
   };
 }
 
