@@ -24,7 +24,7 @@ export class ComponentsService {
   }
 
   getAllComponents(): Promise<Component[]> {
-    return this.repository.findAll();
+    return this.repository.findMany();
   }
 
   async getComponent(id: string): Promise<Component> {

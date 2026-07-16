@@ -24,7 +24,7 @@ export class ManufacturersService {
   }
 
   getAllManufacturers(): Promise<Manufacturer[]> {
-    return this.repository.findAll();
+    return this.repository.findMany();
   }
 
   async getManufacturer(id: string): Promise<Manufacturer> {

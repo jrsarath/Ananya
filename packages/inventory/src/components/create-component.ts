@@ -1,8 +1,5 @@
-import type { Component, CreateComponentInput } from "./component";
-import {
-  ComponentSkuAlreadyExistsError,
-  DefaultLocationNotFoundError,
-} from "./component.errors";
+import { Component, type CreateComponentInput } from "./component";
+import { ComponentSkuAlreadyExistsError } from "./component.errors";
 import type { ComponentRepository } from "./component.repository";
 
 export class CreateComponent {
@@ -21,14 +18,7 @@ export class CreateComponent {
       throw new ComponentSkuAlreadyExistsError(sku);
     }
 
-    return this.components.create({
-      sku,
-      name,
-      description: input.description?.trim() || undefined,
-      manufacturerId: input.manufacturerId ?? null,
-      categoryId: input.categoryId ?? null,
-      defaultLocationId: input.defaultLocationId ?? null,
-      unit,
-    });
+    // Create the component using factory method
+    return this.components.save(Component.create(input));
   }
 }

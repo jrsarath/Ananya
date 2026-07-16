@@ -1,4 +1,4 @@
-import type { Manufacturer, CreateManufacturerInput } from "./manufacturer";
+import { Manufacturer, type CreateManufacturerInput } from "./manufacturer";
 import { ManufacturerCodeAlreadyExistsError } from "./manufacturer.errors";
 import type { ManufacturerRepository } from "./manufacturer.repository";
 
@@ -17,9 +17,7 @@ export class CreateManufacturer {
       throw new ManufacturerCodeAlreadyExistsError(code);
     }
 
-    return this.manufacturers.create({
-      code,
-      name,
-    });
+    // Create the manufacturer using factory method
+    return this.manufacturers.save(Manufacturer.create(input));
   }
 }

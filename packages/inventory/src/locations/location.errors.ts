@@ -1,27 +1,25 @@
-export class LocationCodeAlreadyExistsError extends Error {
+import { DomainError } from "@ananya/core";
+
+export class LocationCodeAlreadyExistsError extends DomainError {
   constructor(code: string) {
-    super(`Location code already exists: ${code}`);
-    this.name = "LocationCodeAlreadyExistsError";
+    super(`Location with code '${code}' already exists.`);
   }
 }
 
-export class ParentLocationNotFoundError extends Error {
+export class ParentLocationNotFoundError extends DomainError {
   constructor(parentId: string) {
     super(`Parent location not found: ${parentId}`);
-    this.name = "ParentLocationNotFoundError";
   }
 }
 
-export class InactiveParentLocationError extends Error {
+export class InactiveParentLocationError extends DomainError {
   constructor(parentId: string) {
     super(`Cannot create a location under inactive parent: ${parentId}`);
-    this.name = "InactiveParentLocationError";
   }
 }
 
-export class LocationNotFoundError extends Error {
+export class LocationNotFoundError extends DomainError {
   constructor(id: string) {
     super(`Location not found: ${id}`);
-    this.name = "LocationNotFoundError";
   }
 }

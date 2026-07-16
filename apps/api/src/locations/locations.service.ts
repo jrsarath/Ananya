@@ -24,7 +24,7 @@ export class LocationsService {
   }
 
   getAllLocations(): Promise<Location[]> {
-    return this.repository.findAll();
+    return this.repository.findMany();
   }
 
   async getLocation(id: string): Promise<Location> {

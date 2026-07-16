@@ -58,6 +58,19 @@ Prefer explicit typing over inference where it improves readability. Use interfa
 3. Use `pnpm dev` to start development servers
 4. Follow the existing code structure and patterns when adding new features
 
+## Database Workflow
+
+This project uses Drizzle ORM.
+
+When modifying the database schema:
+
+1. Update the TypeScript schema files.
+2. Generate a SQL migration using the project's migration command (e.g. `pnpm db:generate`).
+3. Never edit generated SQL migrations unless explicitly requested.
+4. Never use `db:push` unless explicitly asked. Always prefer versioned SQL migrations.
+5. After generating a migration, verify it only contains the intended schema changes.
+6. If schema changes require application code updates, make those in the same change.
+
 ## Repository Conventions
 
 - Never generate `.js` imports in TypeScript source files.

@@ -61,13 +61,13 @@ export class DrizzleComponentRepository implements ComponentRepository {
     return row ? toDomain(row) : null;
   }
 
-  async findAll(): Promise<Component[]> {
+  async findMany(): Promise<Component[]> {
     const rows = await db.select().from(components).orderBy(components.sku);
 
     return rows.map(toDomain);
   }
 
-  async create(input: CreateComponentInput): Promise<Component> {
+  async save(input: CreateComponentInput): Promise<Component> {
     const [row] = await db.insert(components).values(toRow(input)).returning();
 
     if (!row) {

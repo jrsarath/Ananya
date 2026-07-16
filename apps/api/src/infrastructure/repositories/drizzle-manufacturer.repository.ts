@@ -51,7 +51,7 @@ export class DrizzleManufacturerRepository implements ManufacturerRepository {
     return row ? toDomain(row) : null;
   }
 
-  async findAll(): Promise<Manufacturer[]> {
+  async findMany(): Promise<Manufacturer[]> {
     const rows = await db
       .select()
       .from(manufacturers)
@@ -60,7 +60,7 @@ export class DrizzleManufacturerRepository implements ManufacturerRepository {
     return rows.map(toDomain);
   }
 
-  async create(input: CreateManufacturerInput): Promise<Manufacturer> {
+  async save(input: CreateManufacturerInput): Promise<Manufacturer> {
     const [row] = await db
       .insert(manufacturers)
       .values(toRow(input))

@@ -1,4 +1,4 @@
-import type { CreateLocationInput, Location } from "./location";
+import { Location, type CreateLocationInput } from "./location";
 import {
   InactiveParentLocationError,
   LocationCodeAlreadyExistsError,
@@ -32,12 +32,7 @@ export class CreateLocation {
       }
     }
 
-    return this.locations.create({
-      code,
-      name,
-      kind,
-      parentId: input.parentId ?? null,
-      metadata: input.metadata ?? {},
-    });
+    // Create the location using factory method
+    return this.locations.save(Location.create(input));
   }
 }
