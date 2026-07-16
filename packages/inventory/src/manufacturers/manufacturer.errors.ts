@@ -11,3 +11,15 @@ export class ManufacturerNotFoundError extends DomainError {
     super(`Manufacturer not found: ${id}`);
   }
 }
+
+export class InvalidManufacturerCodeError extends DomainError {
+  constructor(message: string) {
+    super(message);
+  }
+}
+
+export class InvalidManufacturerNameError extends DomainError {
+  constructor(message: string) {
+    super(message);
+  }
+}

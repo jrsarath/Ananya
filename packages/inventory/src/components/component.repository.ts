@@ -1,8 +1,8 @@
-import type { Component, CreateComponentInput } from './component';
+import { Component } from './component';
 
 export interface ComponentRepository {
   findById(id: string): Promise<Component | null>;
   findBySku(sku: string): Promise<Component | null>;
   findAll(): Promise<Component[]>;
-  create(input: CreateComponentInput): Promise<Component>;
+  save(component: Component): Promise<Component>;
 }

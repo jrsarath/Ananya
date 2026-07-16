@@ -17,3 +17,21 @@ export class ComponentNotFoundError extends DomainError {
     super(`Component not found: ${id}`);
   }
 }
+
+export class InvalidComponentSkuError extends DomainError {
+  constructor(message: string) {
+    super(message);
+  }
+}
+
+export class InvalidComponentNameError extends DomainError {
+  constructor(message: string) {
+    super(message);
+  }
+}
+
+export class InvalidUnitError extends DomainError {
+  constructor(message: string) {
+    super(message);
+  }
+}
