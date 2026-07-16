@@ -54,6 +54,10 @@ export class Component {
     this.updatedAt = props.updatedAt;
   }
 
+  /**
+   * Creates a new Component aggregate.
+   * Owns identity generation, timestamps, defaults, normalization, and invariants.
+   */
   public static create(input: CreateComponentInput): Component {
     // Normalize SKU: trim and lowercase
     const sku = input.sku.trim().toLowerCase();
@@ -95,6 +99,15 @@ export class Component {
       createdAt,
       updatedAt
     });
+  }
+
+  /**
+   * Rehydrates an existing Component from persistence.
+   * Reconstructs state exactly as stored without validation or normalization.
+   * Used only by repositories when loading from the database.
+   */
+  public static rehydrate(props: ComponentProps): Component {
+    return new Component(props);
   }
 }
 

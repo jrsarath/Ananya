@@ -1,16 +1,15 @@
 import { db } from '@ananya/database';
 import { components } from '@ananya/database/schema';
 import type {
-  CreateComponentInput,
   Component,
   ComponentRepository,
 } from '@ananya/inventory';
 import { eq } from '@ananya/database/query';
-
-type ComponentRow = typeof components.$inferSelect;
+import type { Component as ComponentRow } from '@ananya/database/schema';
+import { Component as ComponentAggregate } from '@ananya/inventory';
 
 function toDomain(row: ComponentRow): Component {
-  return {
+  return ComponentAggregate.rehydrate({
     id: row.id,
     sku: row.sku,
     name: row.name,
@@ -22,12 +21,10 @@ function toDomain(row: ComponentRow): Component {
     isActive: row.isActive,
     createdAt: row.createdAt,
     updatedAt: row.updatedAt,
-  };
+  });
 }
 
-function toRow(
-  component: CreateComponentInput,
-): Omit<ComponentRow, 'id' | 'createdAt' | 'updatedAt'> {
+function toRow(component: Component): Omit<ComponentRow, 'id' | 'createdAt' | 'updatedAt'> {
   return {
     sku: component.sku,
     name: component.name,
@@ -36,7 +33,7 @@ function toRow(
     categoryId: component.categoryId ?? null,
     defaultLocationId: component.defaultLocationId ?? null,
     unit: component.unit,
-    isActive: true,
+    isActive: component.isActive,
   };
 }
 
@@ -67,8 +64,8 @@ export class DrizzleComponentRepository implements ComponentRepository {
     return rows.map(toDomain);
   }
 
-  async save(input: CreateComponentInput): Promise<Component> {
-    const [row] = await db.insert(components).values(toRow(input)).returning();
+  async save(component: Component): Promise<Component> {
+    const [row] = await db.insert(components).values(toRow(component)).returning();
 
     if (!row) {
       throw new Error('Failed to create component');

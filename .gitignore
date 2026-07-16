@@ -1,51 +1,52 @@
-```gitignore
+```
 # Dependencies
 node_modules/
+.pnpm-store/
+.npm/
+.yarn/
 
-# Build artifacts
+# Build outputs
 dist/
 build/
-target/
+.next/
+.nuxt/
+out/
+public/build/
 
-# Python specific
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
-.venv/
-.ENV
-.python-version
-
-# Logs
-*.log
+# TypeScript/JavaScript
+*.tsbuildinfo
+*.js.map
+*.ts.map
 
 # Environment variables
 .env
 .env.local
 .env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+Thumbs.db
 
 # IDE files
 .vscode/
 .idea/
 *.swp
 *.swo
-*.tmp
 
-# Coverage reports
+# Coverage
 coverage/
-htmlcov/
-.coverage
+.nyc_output/
+istanbul-reports/
 
-# OS generated files
+# Temporary files
+*.tmp
+*.temp
 .DS_Store
-Thumbs.db
 ```
-
-Wait, I need to reconsider this. Looking at the modified files, they are all TypeScript/JavaScript source files in a monorepo structure (`packages/inventory/src/...`). There are no build artifacts, dependency directories, or temporary files in the changes. According to rule #6, if the changes contain only source or config files and no build artifacts, dependencies, or temp files, I should output an empty .gitignore.
-
-Since the modified files are only source code files (.ts), I should not add any ignore rules.
-
-(empty - output nothing)

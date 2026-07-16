@@ -36,6 +36,10 @@ export class InventoryTransaction {
     this.createdAt = props.createdAt;
   }
 
+  /**
+   * Creates a new InventoryTransaction aggregate.
+   * Owns identity generation, timestamps, defaults, normalization, and invariants.
+   */
   public static create(input: CreateInventoryTransactionProps): InventoryTransaction {
     // Validate quantity
     if (input.quantity <= 0) {
@@ -117,6 +121,15 @@ export class InventoryTransaction {
       createdBy: input.createdBy,
       createdAt
     });
+  }
+
+  /**
+   * Rehydrates an existing InventoryTransaction from persistence.
+   * Reconstructs state exactly as stored without validation or normalization.
+   * Used only by repositories when loading from the database.
+   */
+  public static rehydrate(props: InventoryTransactionProps): InventoryTransaction {
+    return new InventoryTransaction(props);
   }
 }
 

@@ -1,16 +1,15 @@
 import { db } from '@ananya/database';
 import { locations } from '@ananya/database/schema';
 import type {
-  CreateLocationInput,
   Location,
   LocationRepository,
 } from '@ananya/inventory';
 import { eq } from '@ananya/database/query';
-
-type LocationRow = typeof locations.$inferSelect;
+import type { Location as LocationRow } from '@ananya/database/schema';
+import { Location as LocationAggregate } from '@ananya/inventory';
 
 function toDomain(row: LocationRow): Location {
-  return {
+  return LocationAggregate.rehydrate({
     id: row.id,
     code: row.code,
     name: row.name,
@@ -18,6 +17,18 @@ function toDomain(row: LocationRow): Location {
     parentId: row.parentId,
     isActive: row.isActive,
     metadata: row.metadata,
+    createdAt: row.createdAt,
+    updatedAt: row.updatedAt,
+  });
+}
+
+function toRow(location: Location): Omit<LocationRow, 'id' | 'createdAt' | 'updatedAt'> {
+  return {
+    code: location.code,
+    name: location.name,
+    kind: location.kind,
+    parentId: location.parentId ?? null,
+    metadata: location.metadata ?? {},
   };
 }
 
@@ -48,16 +59,10 @@ export class DrizzleLocationRepository implements LocationRepository {
     return rows.map(toDomain);
   }
 
-  async save(input: CreateLocationInput): Promise<Location> {
+  async save(location: Location): Promise<Location> {
     const [row] = await db
       .insert(locations)
-      .values({
-        code: input.code,
-        name: input.name,
-        kind: input.kind,
-        parentId: input.parentId ?? null,
-        metadata: input.metadata ?? {},
-      })
+      .values(toRow(location))
       .returning();
 
     if (!row) {

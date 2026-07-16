@@ -44,6 +44,10 @@ export class Location {
     this.updatedAt = props.updatedAt;
   }
 
+  /**
+   * Creates a new Location aggregate.
+   * Owns identity generation, timestamps, defaults, normalization, and invariants.
+   */
   public static create(input: CreateLocationInput): Location {
     // Normalize code: trim and uppercase
     const code = input.code.trim().toUpperCase();
@@ -85,5 +89,14 @@ export class Location {
       createdAt,
       updatedAt
     });
+  }
+
+  /**
+   * Rehydrates an existing Location from persistence.
+   * Reconstructs state exactly as stored without validation or normalization.
+   * Used only by repositories when loading from the database.
+   */
+  public static rehydrate(props: LocationProps): Location {
+    return new Location(props);
   }
 }
