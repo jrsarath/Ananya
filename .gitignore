@@ -1,48 +1,13 @@
-```
-# Dependencies
-node_modules/
+```ts
+// Example schema file - replace with your actual manufacturers schema
+export interface Manufacturer {
+  id: string;
+  name: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
-# Build artifacts
-dist/
-build/
-target/
-
-# Python specific
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
-.venv/
-.ENV
-.python-version
-
-# Logs
-*.log
-
-# Environment variables
-.env
-.env.local
-.env.*
-
-# IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
-*.tmp
-
-# Coverage reports
-coverage/
-htmlcov/
-.coverage
-
-# OS generated files
-.DS_Store
-Thumbs.db
-
-#others
-.turbo
+export const manufacturersSchema = {
+  // Schema definition would go here
+};
 ```
