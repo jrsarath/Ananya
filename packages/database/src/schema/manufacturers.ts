@@ -37,3 +37,6 @@ export const manufacturers = pgTable(
     };
   },
 );
+
+export type Manufacturer = typeof manufacturers.$inferSelect;
+export type NewManufacturer = typeof manufacturers.$inferInsert;
