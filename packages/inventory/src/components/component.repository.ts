@@ -1,8 +1,9 @@
 import { Component } from './component';
+import type { FindManyComponentsOptions } from './component';
 
 export interface ComponentRepository {
   findById(id: string): Promise<Component | null>;
   findBySku(sku: string): Promise<Component | null>;
-  findAll(): Promise<Component[]>;
+  findMany(options?: FindManyComponentsOptions): Promise<Component[]>;
   save(component: Component): Promise<Component>;
 }
