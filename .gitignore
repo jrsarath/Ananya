@@ -1,22 +1,18 @@
+```
 # Dependencies
 node_modules/
+**/node_modules/
 
-# Build artifacts
+# Build outputs
 dist/
 build/
 target/
 
-# Python specific
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
-.venv/
-.ENV
-.python-version
+# TypeScript/JavaScript
+*.tsbuildinfo
+*.js.map
+*.jsx.map
+*.ts.map
 
 # Logs
 *.log
@@ -31,16 +27,12 @@ venv/
 .idea/
 *.swp
 *.swo
-*.tmp
 
-# Coverage reports
-coverage/
-htmlcov/
-.coverage
-
-# OS generated files
+# OS files
 .DS_Store
 Thumbs.db
 
-#others
-.turbo
+# Coverage
+coverage/
+.nyc_output/
+```

@@ -1,0 +1,2 @@
+export const BATCH_REPOSITORY = Symbol('BATCH_REPOSITORY');
+export const SERIAL_REPOSITORY = Symbol('SERIAL_REPOSITORY');
