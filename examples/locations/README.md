@@ -45,22 +45,22 @@ The module includes specific errors for handling business rule violations:
 ## Usage Example
 
 ```typescript
-import { LocationService } from './locations.service';
-import { LocationRepository } from './location.repository';
+import { LocationService } from "./locations.service";
+import { LocationRepository } from "./location.repository";
 
 // Create a service instance with a repository implementation
 const service = new LocationService(repository);
 
 // Create a new location
 const location = await service.create({
-  code: 'WH-001',
-  name: 'Warehouse Main Storage',
-  kind: 'warehouse',
+  code: "WH-001",
+  name: "Warehouse Main Storage",
+  kind: "warehouse",
   parentId: null,
 });
 
 // Find a location by ID
-const foundLocation = await service.findById('location-id');
+const foundLocation = await service.findById("location-id");
 ```
 
 ## Implementation Notes

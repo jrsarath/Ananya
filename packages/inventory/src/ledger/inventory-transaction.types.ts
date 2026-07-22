@@ -1,4 +1,4 @@
-import type { TransactionType } from './transaction-types';
+import type { TransactionType } from "./transaction-types";
 
 export interface CreateInventoryTransactionProps {
   id?: string;

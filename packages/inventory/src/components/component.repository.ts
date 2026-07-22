@@ -1,5 +1,5 @@
-import { Component } from './component';
-import type { FindManyComponentsOptions } from './component';
+import { Component } from "./component";
+import type { FindManyComponentsOptions } from "./component";
 
 export interface ComponentRepository {
   findById(id: string): Promise<Component | null>;

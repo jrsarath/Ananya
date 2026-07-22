@@ -19,7 +19,7 @@ Ananya follows a modular monolith architecture with clear domain boundaries:
 2. **Type Safety**: Strong TypeScript typing throughout the codebase
 3. **Error Handling**: Consistent error handling using DomainError hierarchy from @ananya/core
 4. **Repository Pattern**: Clean abstraction for data access operations
-5. **Dependency Direction**: 
+5. **Dependency Direction**:
    ```
    Web Application → API Layer → Domain Modules → Database Abstractions → PostgreSQL
    ```
@@ -29,7 +29,7 @@ Ananya follows a modular monolith architecture with clear domain boundaries:
 ### Core Packages
 
 - `@ananya/core`: Contains shared engineering concepts like DomainError hierarchy and ObjectId value object
-- `@ananya/database`: Database schema and persistence infrastructure  
+- `@ananya/database`: Database schema and persistence infrastructure
 - `@ananya/inventory`: Inventory domain logic
 - `@ananya/shared`: Shared contracts and utilities
 

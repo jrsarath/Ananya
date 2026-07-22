@@ -6,8 +6,8 @@ export class ObjectId {
   private readonly _value: string;
 
   constructor(value: string) {
-    if (!value || typeof value !== 'string') {
-      throw new Error('ObjectId must be a non-empty string');
+    if (!value || typeof value !== "string") {
+      throw new Error("ObjectId must be a non-empty string");
     }
     this._value = value;
   }

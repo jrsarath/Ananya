@@ -134,13 +134,13 @@ Repositories never persist DTOs.
 Correct
 
 ```ts
-repository.save(component)
+repository.save(component);
 ```
 
 Incorrect
 
 ```ts
-repository.save(CreateComponentInput)
+repository.save(CreateComponentInput);
 ```
 
 Repository interface
@@ -215,7 +215,7 @@ Prefer behavior over data.
 Instead of
 
 ```ts
-component.name = value
+component.name = value;
 ```
 
 Prefer
@@ -297,7 +297,7 @@ Identity belongs to the domain.
 Current implementation
 
 ```ts
-ObjectId.generate()
+ObjectId.generate();
 ```
 
 Repositories never create identities.

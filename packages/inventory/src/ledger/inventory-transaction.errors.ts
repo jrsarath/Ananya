@@ -1,4 +1,4 @@
-import { DomainError } from '@ananya/core';
+import { DomainError } from "@ananya/core";
 
 export class InvalidTransactionTypeError extends DomainError {
   constructor(message: string) {

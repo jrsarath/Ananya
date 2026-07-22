@@ -20,7 +20,7 @@ This RFC is intentionally implementation-independent. It defines the language of
 
 # Motivation
 
-As the system grows, every contributor should share the same understanding of what terms such as *Component*, *Location*, *Inventory*, and *Transaction* mean.
+As the system grows, every contributor should share the same understanding of what terms such as _Component_, _Location_, _Inventory_, and _Transaction_ mean.
 
 Without a common vocabulary, different modules begin to use the same words with different meanings, leading to inconsistent implementations and difficult maintenance.
 
@@ -36,7 +36,7 @@ A **Manufacturer** represents the organization responsible for manufacturing a C
 
 Manufacturers are reference data.
 
-A Manufacturer describes *who made the item*, not where it was purchased.
+A Manufacturer describes _who made the item_, not where it was purchased.
 
 ---
 
@@ -46,7 +46,7 @@ A **Supplier** represents an organization from which Components are acquired.
 
 Suppliers are reference data.
 
-A Supplier describes *where the item was obtained*, not who manufactured it.
+A Supplier describes _where the item was obtained_, not who manufactured it.
 
 A Manufacturer may also be a Supplier.
 
@@ -251,9 +251,9 @@ Inventory is derived from the complete history of Inventory Transactions.
 
 ## Components Define, Transactions Record
 
-Components define *what* exists.
+Components define _what_ exists.
 
-Transactions record *what happened*.
+Transactions record _what happened_.
 
 These responsibilities must remain separate.
 

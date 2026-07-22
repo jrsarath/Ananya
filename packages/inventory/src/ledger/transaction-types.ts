@@ -1,11 +1,11 @@
 export const TRANSACTION_TYPES = [
-  'Receipt',
-  'Issue', 
-  'Transfer',
-  'Adjustment',
-  'Return',
-  'Consumption',
-  'Production'
+  "Receipt",
+  "Issue",
+  "Transfer",
+  "Adjustment",
+  "Return",
+  "Consumption",
+  "Production",
 ] as const;
 
 export const TransactionType = {
@@ -15,7 +15,7 @@ export const TransactionType = {
   Adjustment: TRANSACTION_TYPES[3],
   Return: TRANSACTION_TYPES[4],
   Consumption: TRANSACTION_TYPES[5],
-  Production: TRANSACTION_TYPES[6]
+  Production: TRANSACTION_TYPES[6],
 } as const;
 
-export type TransactionType = typeof TRANSACTION_TYPES[number];
+export type TransactionType = (typeof TRANSACTION_TYPES)[number];
