@@ -1,5 +1,9 @@
-import { ObjectId } from '@ananya/core';
-import { InvalidLocationCodeError, InvalidLocationNameError, InvalidLocationKindError } from './location.errors';
+import { ObjectId } from "@ananya/core";
+import {
+  InvalidLocationCodeError,
+  InvalidLocationNameError,
+  InvalidLocationKindError,
+} from "./location.errors";
 
 export interface LocationProps {
   id: string;
@@ -51,26 +55,26 @@ export class Location {
   public static create(input: CreateLocationInput): Location {
     // Normalize code: trim and uppercase
     const code = input.code.trim().toUpperCase();
-    
+
     // Normalize name: trim
     const name = input.name.trim();
-    
+
     // Normalize kind: trim and lowercase
     const kind = input.kind.trim().toLowerCase();
 
     // Validate code
     if (!code) {
-      throw new InvalidLocationCodeError('Location code is required');
+      throw new InvalidLocationCodeError("Location code is required");
     }
 
     // Validate name
     if (!name) {
-      throw new InvalidLocationNameError('Location name is required');
+      throw new InvalidLocationNameError("Location name is required");
     }
 
     // Validate kind
     if (!kind) {
-      throw new InvalidLocationKindError('Location kind is required');
+      throw new InvalidLocationKindError("Location kind is required");
     }
 
     // Generate identity and timestamps
@@ -87,7 +91,7 @@ export class Location {
       isActive: true, // Default to active
       metadata: input.metadata ?? {},
       createdAt,
-      updatedAt
+      updatedAt,
     });
   }
 

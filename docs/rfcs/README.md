@@ -106,7 +106,7 @@ Not every RFC requires every section, but the reasoning behind the decision shou
 An RFC should:
 
 - Focus on the problem before the solution.
-- Explain *why*, not just *what*.
+- Explain _why_, not just _what_.
 - Document alternatives that were considered.
 - Document trade-offs honestly.
 - Remain implementation-independent whenever possible.
@@ -170,7 +170,7 @@ Routine feature work, bug fixes, refactoring, implementation details, and small 
 
 # RFC Index
 
-| RFC | Title | Status |
-|------|-------|--------|
-| 0001 | Inventory Ledger | Accepted |
-| 0002 | Inventory Domain Model | Draft |
+| RFC  | Title                  | Status   |
+| ---- | ---------------------- | -------- |
+| 0001 | Inventory Ledger       | Accepted |
+| 0002 | Inventory Domain Model | Draft    |

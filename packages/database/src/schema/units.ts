@@ -22,7 +22,9 @@ export const units = pgTable(
 
     conversionFactor: numeric("conversion_factor", { precision: 10, scale: 4 }),
 
-    precision: numeric("precision", { precision: 10, scale: 0 }).notNull().default(0),
+    precision: numeric("precision", { precision: 10, scale: 0 })
+      .notNull()
+      .default("0"),
 
     isActive: boolean("is_active").notNull().default(true),
 

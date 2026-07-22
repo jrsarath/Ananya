@@ -1,4 +1,4 @@
-import { ObjectId } from '@ananya/core';
+import { ObjectId } from "@ananya/core";
 
 export interface InventoryProjectionProps {
   id: string;
@@ -16,7 +16,7 @@ export class InventoryProjection {
     public readonly locationId: string,
     public readonly quantity: number,
     public readonly unitOfMeasure: string,
-    public readonly lastUpdated: Date
+    public readonly lastUpdated: Date,
   ) {}
 
   static create(props: InventoryProjectionProps): InventoryProjection {
@@ -26,7 +26,7 @@ export class InventoryProjection {
       props.locationId,
       props.quantity,
       props.unitOfMeasure,
-      props.lastUpdated
+      props.lastUpdated,
     );
   }
 
@@ -36,17 +36,15 @@ export class InventoryProjection {
     quantity: number,
     unitOfMeasure: string,
     transactionType: string,
-    timestamp: Date
+    timestamp: Date,
   ): InventoryProjection {
-    // For now, we'll just create a basic projection
-    // The actual calculation logic will be in the projection service
     return new InventoryProjection(
-      new ObjectId().toString(),
+      ObjectId.generate().value,
       componentId,
       locationId,
       quantity,
       unitOfMeasure,
-      timestamp
+      timestamp,
     );
   }
 

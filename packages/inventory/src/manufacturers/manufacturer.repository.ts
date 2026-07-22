@@ -1,4 +1,4 @@
-import { Manufacturer } from './manufacturer';
+import { Manufacturer } from "./manufacturer";
 
 export interface FindManyManufacturersOptions {}
 

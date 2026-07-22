@@ -1,5 +1,8 @@
-import { ObjectId } from '@ananya/core';
-import { InvalidManufacturerCodeError, InvalidManufacturerNameError } from './manufacturer.errors';
+import { ObjectId } from "@ananya/core";
+import {
+  InvalidManufacturerCodeError,
+  InvalidManufacturerNameError,
+} from "./manufacturer.errors";
 
 export interface ManufacturerProps {
   id: string;
@@ -39,18 +42,18 @@ export class Manufacturer {
   public static create(input: CreateManufacturerInput): Manufacturer {
     // Normalize code: trim and lowercase
     const code = input.code.trim().toLowerCase();
-    
+
     // Normalize name: trim
     const name = input.name.trim();
 
     // Validate code
     if (!code) {
-      throw new InvalidManufacturerCodeError('Manufacturer code is required');
+      throw new InvalidManufacturerCodeError("Manufacturer code is required");
     }
 
     // Validate name
     if (!name) {
-      throw new InvalidManufacturerNameError('Manufacturer name is required');
+      throw new InvalidManufacturerNameError("Manufacturer name is required");
     }
 
     // Generate identity and timestamps
@@ -64,7 +67,7 @@ export class Manufacturer {
       name,
       isActive: true, // Default to active
       createdAt,
-      updatedAt
+      updatedAt,
     });
   }
 

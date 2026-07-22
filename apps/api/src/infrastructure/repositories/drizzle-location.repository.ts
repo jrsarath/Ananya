@@ -1,9 +1,6 @@
 import { db } from '@ananya/database';
 import { locations } from '@ananya/database/schema';
-import type {
-  Location,
-  LocationRepository,
-} from '@ananya/inventory';
+import type { Location, LocationRepository } from '@ananya/inventory';
 import { eq } from '@ananya/database/query';
 import type { Location as LocationRow } from '@ananya/database/schema';
 import { Location as LocationAggregate } from '@ananya/inventory';

@@ -11,7 +11,9 @@ function toDomain(row: UnitRow): Unit {
     name: row.name,
     category: row.category,
     isBaseUnit: row.isBaseUnit,
-    conversionFactor: row.conversionFactor ? Number(row.conversionFactor) : null,
+    conversionFactor: row.conversionFactor
+      ? Number(row.conversionFactor)
+      : null,
     precision: Number(row.precision),
     isActive: row.isActive,
     createdAt: row.createdAt,
@@ -19,14 +21,14 @@ function toDomain(row: UnitRow): Unit {
   });
 }
 
-function toRow(
-  unit: Unit,
-): Omit<UnitRow, 'id' | 'createdAt' | 'updatedAt'> {
+function toRow(unit: Unit): Omit<UnitRow, 'id' | 'createdAt' | 'updatedAt'> {
   return {
     name: unit.name,
     category: unit.category,
     isBaseUnit: unit.isBaseUnit,
-    conversionFactor: unit.conversionFactor ? String(unit.conversionFactor) : null,
+    conversionFactor: unit.conversionFactor
+      ? String(unit.conversionFactor)
+      : null,
     precision: String(unit.precision),
     isActive: unit.isActive,
   };
@@ -69,10 +71,7 @@ export class DrizzleUnitRepository implements UnitRepository {
   }
 
   async save(unit: Unit): Promise<Unit> {
-    const [row] = await db
-      .insert(units)
-      .values(toRow(unit))
-      .returning();
+    const [row] = await db.insert(units).values(toRow(unit)).returning();
 
     if (!row) {
       throw new Error('Failed to create unit');

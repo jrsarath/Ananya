@@ -1,0 +1,1 @@
+export const SERIAL_REPOSITORY = Symbol('SERIAL_REPOSITORY');

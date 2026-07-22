@@ -25,6 +25,7 @@ Security updates will be released as patches and will be documented in the chang
 ## Supported Versions
 
 We currently support security updates for:
+
 - The latest stable release
 - The previous major version (if still actively maintained)
 

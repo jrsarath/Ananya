@@ -3,9 +3,7 @@ import { ManufacturerCodeAlreadyExistsError } from "./manufacturer.errors";
 import type { ManufacturerRepository } from "./manufacturer.repository";
 
 export class CreateManufacturer {
-  constructor(
-    private readonly manufacturers: ManufacturerRepository,
-  ) {}
+  constructor(private readonly manufacturers: ManufacturerRepository) {}
 
   async execute(input: CreateManufacturerInput): Promise<Manufacturer> {
     // Normalize input for uniqueness check (the aggregate will normalize again)

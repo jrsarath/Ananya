@@ -1,5 +1,9 @@
-import { ObjectId } from '@ananya/core';
-import { InvalidComponentSkuError, InvalidComponentNameError, InvalidUnitError } from './component.errors';
+import { ObjectId } from "@ananya/core";
+import {
+  InvalidComponentSkuError,
+  InvalidComponentNameError,
+  InvalidUnitError,
+} from "./component.errors";
 
 export interface ComponentProps {
   id: string;
@@ -61,24 +65,24 @@ export class Component {
   public static create(input: CreateComponentInput): Component {
     // Normalize SKU: trim and lowercase
     const sku = input.sku.trim().toLowerCase();
-    
+
     // Normalize name: trim
     const name = input.name.trim();
-    
+
     // Normalize unit: trim
     const unit = input.unit.trim();
 
     // Validate required fields
     if (!sku) {
-      throw new InvalidComponentSkuError('SKU is required');
+      throw new InvalidComponentSkuError("SKU is required");
     }
-    
+
     if (!name) {
-      throw new InvalidComponentNameError('Name is required');
+      throw new InvalidComponentNameError("Name is required");
     }
-    
+
     if (!unit) {
-      throw new InvalidUnitError('Unit is required');
+      throw new InvalidUnitError("Unit is required");
     }
 
     // Generate identity and timestamps
@@ -97,7 +101,7 @@ export class Component {
       unit,
       isActive: true, // Default to active
       createdAt,
-      updatedAt
+      updatedAt,
     });
   }
 
@@ -110,4 +114,3 @@ export class Component {
     return new Component(props);
   }
 }
-

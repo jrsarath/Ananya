@@ -1,1 +1,1 @@
-export { eq } from "drizzle-orm";
+export { eq, and } from "drizzle-orm";

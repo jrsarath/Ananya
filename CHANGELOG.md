@@ -8,20 +8,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
 - Initial project structure and documentation
 - Basic architecture and design guidelines
 - Development environment setup instructions
 
 ### Changed
+
 - Updated README with project overview
 - Enhanced architecture documentation with domain boundaries
 
 ### Fixed
+
 - Resolved initial build issues in development environment
 
 ## [0.1.0] - 2026-07-14
 
 ### Added
+
 - Core Ananya framework implementation
 - Inventory management system foundation
 - API and Web application structure
@@ -29,11 +33,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Basic testing infrastructure
 
 ### Changed
+
 - Refactored project architecture to follow modular monolith pattern
 - Updated dependency versions across all packages
 - Improved documentation structure and content
 
 ### Fixed
+
 - Resolved critical database connection issues
 - Fixed authentication flow in web application
 - Corrected inventory transaction processing logic

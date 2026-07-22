@@ -3,9 +3,7 @@ import { ComponentSkuAlreadyExistsError } from "./component.errors";
 import type { ComponentRepository } from "./component.repository";
 
 export class CreateComponent {
-  constructor(
-    private readonly components: ComponentRepository,
-  ) {}
+  constructor(private readonly components: ComponentRepository) {}
 
   async execute(input: CreateComponentInput): Promise<Component> {
     // Normalize input for uniqueness check (the aggregate will normalize again)

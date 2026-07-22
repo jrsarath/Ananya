@@ -1,5 +1,5 @@
-import { ObjectId } from '@ananya/core';
-import { InvalidUnitNameError, InvalidUnitCategoryError } from './unit.errors';
+import { ObjectId } from "@ananya/core";
+import { InvalidUnitNameError, InvalidUnitCategoryError } from "./unit.errors";
 
 export interface UnitProps {
   id: string;
@@ -51,27 +51,38 @@ export class Unit {
   public static create(input: CreateUnitInput): Unit {
     // Normalize name: trim
     const name = input.name.trim();
-    
+
     // Normalize category: trim
     const category = input.category.trim();
 
     // Validate required fields
     if (!name) {
-      throw new InvalidUnitNameError('Unit name is required');
+      throw new InvalidUnitNameError("Unit name is required");
     }
-    
+
     if (!category) {
-      throw new InvalidUnitCategoryError('Unit category is required');
+      throw new InvalidUnitCategoryError("Unit category is required");
     }
 
     // Validate conversion factor for non-base units
-    if (!input.isBaseUnit && (input.conversionFactor === undefined || input.conversionFactor === null)) {
-      throw new InvalidUnitCategoryError('Non-base units must have a conversion factor');
+    if (
+      !input.isBaseUnit &&
+      (input.conversionFactor === undefined || input.conversionFactor === null)
+    ) {
+      throw new InvalidUnitCategoryError(
+        "Non-base units must have a conversion factor",
+      );
     }
 
     // Validate conversion factor is positive
-    if (input.conversionFactor !== undefined && input.conversionFactor !== null && input.conversionFactor <= 0) {
-      throw new InvalidUnitCategoryError('Conversion factor must be greater than zero');
+    if (
+      input.conversionFactor !== undefined &&
+      input.conversionFactor !== null &&
+      input.conversionFactor <= 0
+    ) {
+      throw new InvalidUnitCategoryError(
+        "Conversion factor must be greater than zero",
+      );
     }
 
     // Generate identity and timestamps
@@ -88,7 +99,7 @@ export class Unit {
       precision: input.precision,
       isActive: true, // Default to active
       createdAt,
-      updatedAt
+      updatedAt,
     });
   }
 
@@ -109,11 +120,13 @@ export class Unit {
     if (this.isBaseUnit) {
       return quantity;
     }
-    
+
     if (this.conversionFactor === undefined || this.conversionFactor === null) {
-      throw new Error(`Cannot convert from ${this.name}: no conversion factor defined`);
+      throw new Error(
+        `Cannot convert from ${this.name}: no conversion factor defined`,
+      );
     }
-    
+
     return quantity * this.conversionFactor;
   }
 
@@ -125,11 +138,13 @@ export class Unit {
     if (this.isBaseUnit) {
       return quantity;
     }
-    
+
     if (this.conversionFactor === undefined || this.conversionFactor === null) {
-      throw new Error(`Cannot convert to ${this.name}: no conversion factor defined`);
+      throw new Error(
+        `Cannot convert to ${this.name}: no conversion factor defined`,
+      );
     }
-    
+
     return quantity / this.conversionFactor;
   }
 }
