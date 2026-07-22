@@ -41,7 +41,7 @@ export default function SettingsPage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
             <span style={{ fontSize: '0.875rem' }}>API Endpoint:</span>
             <span className="code-font" style={{ color: 'var(--accent)', fontWeight: 600 }}>
-              {process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}
+              {process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}
             </span>
           </div>
 

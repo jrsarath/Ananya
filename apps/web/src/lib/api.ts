@@ -11,7 +11,7 @@ import type {
 } from '@ananya/inventory';
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
 
 async function fetchApi<T>(
   endpoint: string,
@@ -194,4 +194,67 @@ export const api = {
       method: 'POST',
       body: JSON.stringify(data),
     }),
+
+  // Suppliers
+  getSuppliers: (search?: string) =>
+    fetchApi<Record<string, unknown>[]>(`/suppliers${search ? `?search=${encodeURIComponent(search)}` : ''}`),
+  getSupplier: (id: string) => fetchApi<Record<string, unknown>>(`/suppliers/${id}`),
+  createSupplier: (data: { code: string; name: string; taxId?: string; paymentTerms?: string; currency?: string }) =>
+    fetchApi<Record<string, unknown>>('/suppliers', { method: 'POST', body: JSON.stringify(data) }),
+  addSupplierContact: (id: string, data: { name: string; email?: string; phone?: string; role?: string; isPrimary?: boolean }) =>
+    fetchApi<void>(`/suppliers/${id}/contacts`, { method: 'POST', body: JSON.stringify(data) }),
+  mapSupplierComponent: (id: string, data: { componentId: string; vendorPartNumber: string; unitPrice?: number; leadTimeDays?: number }) =>
+    fetchApi<void>(`/suppliers/${id}/components`, { method: 'POST', body: JSON.stringify(data) }),
+
+  // Purchase Orders
+  getPurchaseOrders: (supplierId?: string) =>
+    fetchApi<Record<string, unknown>[]>(`/purchase-orders${supplierId ? `?supplierId=${supplierId}` : ''}`),
+  getPurchaseOrder: (id: string) => fetchApi<Record<string, unknown>>(`/purchase-orders/${id}`),
+  createPurchaseOrder: (data: { supplierId: string; currency?: string; notes?: string; expectedDeliveryDate?: string }) =>
+    fetchApi<Record<string, unknown>>('/purchase-orders', { method: 'POST', body: JSON.stringify(data) }),
+  addPoLine: (id: string, data: { componentId: string; vendorPartNumber?: string; unitPrice: number; quantityOrdered: number; taxRate?: number }) =>
+    fetchApi<Record<string, unknown>>(`/purchase-orders/${id}/lines`, { method: 'POST', body: JSON.stringify(data) }),
+  submitPo: (id: string) => fetchApi<Record<string, unknown>>(`/purchase-orders/${id}/submit`, { method: 'POST' }),
+  approvePo: (id: string) => fetchApi<Record<string, unknown>>(`/purchase-orders/${id}/approve`, { method: 'POST' }),
+  issuePo: (id: string) => fetchApi<Record<string, unknown>>(`/purchase-orders/${id}/issue`, { method: 'POST' }),
+  cancelPo: (id: string) => fetchApi<Record<string, unknown>>(`/purchase-orders/${id}/cancel`, { method: 'POST' }),
+
+  // Goods Receipts
+  getGoodsReceipts: (purchaseOrderId?: string) =>
+    fetchApi<Record<string, unknown>[]>(`/goods-receipts${purchaseOrderId ? `?purchaseOrderId=${purchaseOrderId}` : ''}`),
+  getGoodsReceipt: (id: string) => fetchApi<Record<string, unknown>>(`/goods-receipts/${id}`),
+  createGoodsReceipt: (data: { purchaseOrderId: string; supplierId: string; packingSlipNumber?: string }) =>
+    fetchApi<Record<string, unknown>>('/goods-receipts', { method: 'POST', body: JSON.stringify(data) }),
+  addGrLine: (id: string, data: { poLineId: string; componentId: string; locationId: string; quantityReceived: number; batchNumber?: string; serialNumbers?: string[] }) =>
+    fetchApi<Record<string, unknown>>(`/goods-receipts/${id}/lines`, { method: 'POST', body: JSON.stringify(data) }),
+  postGoodsReceipt: (id: string) => fetchApi<Record<string, unknown>>(`/goods-receipts/${id}/post`, { method: 'POST' }),
+
+  // Supplier Returns
+  getSupplierReturns: () => fetchApi<Record<string, unknown>[]>(`/supplier-returns`),
+  getSupplierReturn: (id: string) => fetchApi<Record<string, unknown>>(`/supplier-returns/${id}`),
+  createSupplierReturn: (data: { supplierId: string; purchaseOrderId?: string; rmaNumber?: string }) =>
+    fetchApi<Record<string, unknown>>('/supplier-returns', { method: 'POST', body: JSON.stringify(data) }),
+  addReturnLine: (id: string, data: { componentId: string; locationId: string; quantityReturned: number; unitPrice: number; reason: string }) =>
+    fetchApi<Record<string, unknown>>(`/supplier-returns/${id}/lines`, { method: 'POST', body: JSON.stringify(data) }),
+  approveReturn: (id: string, rmaNumber?: string) =>
+    fetchApi<Record<string, unknown>>(`/supplier-returns/${id}/approve`, { method: 'POST', body: JSON.stringify({ rmaNumber }) }),
+  dispatchReturn: (id: string) => fetchApi<Record<string, unknown>>(`/supplier-returns/${id}/dispatch`, { method: 'POST' }),
+
+  // Purchase Invoices
+  getPurchaseInvoices: () => fetchApi<Record<string, unknown>[]>(`/purchase-invoices`),
+  getPurchaseInvoice: (id: string) => fetchApi<Record<string, unknown>>(`/purchase-invoices/${id}`),
+  createPurchaseInvoice: (data: { vendorInvoiceNumber: string; supplierId: string; purchaseOrderId: string; dueDate: string }) =>
+    fetchApi<Record<string, unknown>>('/purchase-invoices', { method: 'POST', body: JSON.stringify(data) }),
+  addInvoiceLine: (id: string, data: { componentId: string; quantityBilled: number; unitPrice: number }) =>
+    fetchApi<Record<string, unknown>>(`/purchase-invoices/${id}/lines`, { method: 'POST', body: JSON.stringify(data) }),
+  matchInvoice: (id: string) =>
+    fetchApi<{ invoice: Record<string, unknown>; matchResult: { isMatch: boolean; details: string[] } }>(`/purchase-invoices/${id}/match`, { method: 'POST' }),
+  approveInvoice: (id: string) => fetchApi<Record<string, unknown>>(`/purchase-invoices/${id}/approve`, { method: 'POST' }),
+
+  // Policies & Reporting
+  getProcurementPolicies: () => fetchApi<Record<string, unknown>[]>(`/procurement-policies`),
+  createProcurementPolicy: (data: { policyType: string; name: string; thresholdAmount?: number; overReceiptTolerancePercent?: number }) =>
+    fetchApi<Record<string, unknown>>('/procurement-policies', { method: 'POST', body: JSON.stringify(data) }),
+  getProcurementMetrics: () => fetchApi<Record<string, unknown>>('/procurement/reporting/metrics'),
+  getOpenPoAging: () => fetchApi<Record<string, unknown>[]>(`/procurement/reporting/open-po-aging`),
 };

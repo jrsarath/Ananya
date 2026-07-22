@@ -9,6 +9,13 @@ import { InventoryProjectionsModule } from './inventory-projections/inventory-pr
 import { ReservationsModule } from './reservations/reservations.module';
 import { BatchesModule } from './batches/batches.module';
 import { SerialsModule } from './serials/serials.module';
+import { SuppliersModule } from './suppliers/suppliers.module';
+import { PurchaseOrdersModule } from './purchase-orders/purchase-orders.module';
+import { GoodsReceiptsModule } from './goods-receipts/goods-receipts.module';
+import { SupplierReturnsModule } from './supplier-returns/supplier-returns.module';
+import { PurchaseInvoicesModule } from './purchase-invoices/purchase-invoices.module';
+import { ProcurementPoliciesModule } from './procurement-policies/procurement-policies.module';
+import { ProcurementReportingModule } from './procurement-reporting/procurement-reporting.module';
 
 @Module({
   imports: [
@@ -21,6 +28,13 @@ import { SerialsModule } from './serials/serials.module';
     ReservationsModule,
     BatchesModule,
     SerialsModule,
+    SuppliersModule,
+    PurchaseOrdersModule,
+    GoodsReceiptsModule,
+    SupplierReturnsModule,
+    PurchaseInvoicesModule,
+    ProcurementPoliciesModule,
+    ProcurementReportingModule,
   ],
   controllers: [AppController],
 })

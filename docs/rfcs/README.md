@@ -174,3 +174,16 @@ Routine feature work, bug fixes, refactoring, implementation details, and small 
 | ---- | ---------------------- | -------- |
 | 0001 | Inventory Ledger       | Accepted |
 | 0002 | Inventory Domain Model | Draft    |
+| 0003 | Inventory Ledger       | Accepted |
+| 0004 | Inventory Projection   | Accepted |
+| 0005 | Transaction Types      | Accepted |
+| 0006 | Units of Measure       | Accepted |
+| 0007 | Batch & Serial Tracking| Accepted |
+| 0008 | Inventory Reservations | Accepted |
+| 0009 | Supplier Management    | Accepted |
+| 0010 | Purchase Orders        | Accepted |
+| 0011 | Goods Receipt          | Accepted |
+| 0012 | Supplier Returns       | Accepted |
+| 0013 | Purchase Invoices      | Accepted |
+| 0014 | Procurement Policies   | Accepted |
+| 0015 | Procurement Reporting  | Accepted |
